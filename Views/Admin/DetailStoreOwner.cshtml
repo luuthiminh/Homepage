@@ -1,0 +1,78 @@
+﻿@model Homepage.Models.StoreOwner
+@{
+    Layout = "_Admin";
+}
+<section style="background-color: #eee;">
+    <div class="container py-4">
+        <div>
+            <h1 class="text-center">Customer's Information</h1><br />
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img class="rounded-circle img-fluid" style="width: 150px;" src="@Model.SAvatar">
+                        <h5 class="my-3">@Model.SName</h5>
+                        <h5 class="text-muted mb-4">Customer's Id: @Model.SId</h5>
+                        <div class="d-flex justify-content-center mb-1">
+                            <button type="button" class="btn btn-outline-primary ms-3">Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Full Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.SName</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">StoreOwner ID</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.SId</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Username</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.SUsername</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.SPhone</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Gender</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.SGender</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

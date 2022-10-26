@@ -1,0 +1,50 @@
+﻿@model List<StoreOwner>
+@{
+    Layout = "_Admin";
+}
+<h1 class="text text-center">List of Store Owner account</h1>
+<br />
+
+<table class="table text-center table-striped table-hover">
+    <thead class="table-dark"
+            <tr>
+                <th> Id</th>
+                <th> Store Owner ID</th>
+                <th> Name</th>
+                <th> Phone</th>
+                <th> Avatar</th>
+                <th>Menu</th>
+            </tr>
+            </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.Id</td>
+                <td>@s.SId</td>
+                <td>@s.SName</td>
+                <td>@s.SPhone</td>
+                <td>
+                    <a>
+                        <img src="@s.SAvatar" width="100" height="100" />
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-controller="Admin" asp-action="EditStoreOwner" asp-route-id="@s.Id">
+                        Edit
+                    </a>
+                    <a class="btn btn-success" asp-controller="Admin" asp-action="DetailStoreOwner" asp-route-id="@s.Id">
+                        Detail
+                    </a>
+
+                    <a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteStoreOwner" asp-route-id="@s.Id"
+                   onclick="return confirm('Are you sure to delete this account?');">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

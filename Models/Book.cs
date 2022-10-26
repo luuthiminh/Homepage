@@ -6,33 +6,27 @@ namespace Homepage.Models
 {
     public class Book
     {
-
         public int Id { get; set; }
+        [MinLength(2, ErrorMessage = "Book ID must be at least 2 characters.")]
+        [RegularExpression("^(B)[a-z,A-Z]*[0-9]{1,}")]
+        public string BookId { get; set; }
+        [MinLength(1, ErrorMessage = "Name length must be at least 1 character.")]
+        [MaxLength(50, ErrorMessage = "Name should not exceed 50 characters.")]
+        public string BookTitle { get; set; }
+        [Range(0, 100, ErrorMessage = "Price needs to be greater than $0 and less than $100.")]
+        public double BookPrice { get; set; }
+        [Range(0, 100, ErrorMessage = "Quantity needs to be less than 100.")]
+        public int BookQuantity { get; set; }
+        [MinLength(5, ErrorMessage = "The description must be at least 5 characters.")]
+        public string BookDescription { get; set; }
         [Required]
-        [StringLength(2, MinimumLength = 2, ErrorMessage = "Book ID must have 2 characters")]
-        public string BId { get; set; }
-
-        [MinLength(3, ErrorMessage = "Title length must be at least 5 characters")]
-        [MaxLength(30, ErrorMessage = "Max title length is 30 characters")]
-        public string Title { get; set; }
+        public string BookImage { get; set; }
+        [MinLength(1, ErrorMessage = "Name length must be at least 1 character.")]
+        [MaxLength(30, ErrorMessage = "Name should not exceed 50 characters.")]
+        public string BookAuthor { get; set; }
         [Required]
-        public string Category { get; set; }
-
-        [Required]
-        [Range(1, 100, ErrorMessage = "Price must be from 1 to 100")]
-        public double Price { get; set; }
-
-        [Range(1, 200, ErrorMessage = "Quanity must be from 1 to 200")]
-        public int Quantity { get; set; }
-
-        [MinLength(100, ErrorMessage = "Title length must be at least 100 characters")]
-        [MaxLength(3000, ErrorMessage = "Max title length is 3000 characters")]
-        public string Description { get; set; }
-        [Required]
-        public string Author { get; set; }
-        [Required]
-        public string Image { get; set; }
-
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
         public ICollection<Order> Orders { get; set; }
     }
 }

@@ -1,0 +1,64 @@
+﻿@model Homepage.Models.Book
+@{
+    Layout = "_Admin";
+}
+
+<div class="container">
+    <div class="p-2 pt-md-5 pb-md-3 mx-auto">
+        <h1 class="display-4">Edit this book</h1>
+    </div>
+
+    <form asp-controller="Book" asp-action="Edit" method="post">
+        <input hidden class="form-control" asp-for="@Model.Id">
+        <div class="form-group">
+            <label class="font-weight-bold" asp-for="@Model.BookId">ID</label>
+            <input class="form-control" asp-for="@Model.BookId">
+            <span class="text-danger" asp-validation-for="@Model.BookId"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-bold" asp-for="@Model.BookTitle">Title</label>
+            <input class="form-control" asp-for="@Model.BookTitle">
+            <span class="text-danger" asp-validation-for="@Model.BookTitle"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-bold" asp-for="@Model.BookPrice">Price</label>
+            <input class="form-control" asp-for="@Model.BookPrice">
+            <span class="text-danger" asp-validation-for="@Model.BookTitle"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-bold" asp-for="@Model.BookQuantity">Quantity</label>
+            <input class="form-control" asp-for="@Model.BookQuantity">
+            <span class="text-danger" asp-validation-for="@Model.BookQuantity"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-bold" asp-for="@Model.BookDescription">Description</label>
+            <input class="form-control" asp-for="@Model.BookDescription">
+            <span class="text-danger" asp-validation-for="@Model.BookQuantity"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-bold" asp-for="@Model.BookImage">Image</label>
+            <input class="form-control" asp-for="@Model.BookImage">
+            <span class="text-danger" asp-validation-for="@Model.BookImage"></span>
+        </div>
+        <div class="form-group">
+            <label class="font-weight-bold" asp-for="@Model.BookAuthor">Author</label>
+            <input class="form-control" asp-for="@Model.BookAuthor">
+            <span class="text-danger" asp-validation-for="@Model.BookAuthor"></span>
+        </div>
+        <div class="form-group">
+            <label class="font-weight-bold">Category</label>
+            <select class="list-group-item"
+                    asp-for="CategoryId"
+                    asp-items="@(new SelectList(ViewBag.Categories,"Id","CatName"))">
+                <option>Select an category</option>
+            </select>
+            <span class="text-danger" asp-validation-for="CategoryId"></span>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="fa-solid fa-check"></i> Submit</button>
+    </form>
+</div>

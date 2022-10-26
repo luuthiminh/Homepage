@@ -15,16 +15,17 @@
                     <div class="preview col-md-6">
                         <div class="preview-pic tab-content">
                             <div class="tab-pane active" id="pic-1">
-                                <img src="@Model.Image">
+                                <img src="@Model.BookImage">
                             </div>
                         </div>
                     </div>
                     <div class="details col-md-6">
-                        <h3 class="product-title">@Model.Title</h3>
-                        <h4 class="price">Price: <span>@Model.Price</span></h4>
-                        <h4 class="price">Price: <span>@Model.Quantity</span></h4>
-                        <h4 class="price">Price: <span>@Model.Author</span></h4>
-                        <p class="product-description">Gifts details: @Model.Description</p>
+                        <h3 class="product-title">@Model.BookTitle</h3>
+                        <h4 class="price">Price: <span>@Model.BookId</span></h4>
+                        <h4 class="price">Price: <span>@Model.BookPrice</span></h4>
+                        <h4 class="price">Price: <span>@Model.BookQuantity</span></h4>
+                        <h4 class="price">Price: <span>@Model.BookAuthor</span></h4>
+                        <p class="product-description">Gifts details: @Model.BookDescription</p>
                         <p class="Key">
                             <strong>
                                 KEY ATTRIBUTES : <br>
@@ -41,7 +42,7 @@
                                 <input type="hidden" name="id" value="@Model.Id">
                                 <div class="form-group">
                                     <b><label for="formGroupExampleInput" style="font-family:'Rubik', sans-serif; font-size:15px;">Oder Quanyity: </label></b>
-                                    <input  type="number" name="quantity" min="1" max="@Model.Quantity">
+                                    <input  type="number" name="quantity" min="1" max="@Model.BookQuantity">
                                 </div>
                                 <input type="submit" class="btn btn-outline-info" value="Add to cart">
                             </form>

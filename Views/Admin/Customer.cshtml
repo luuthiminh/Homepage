@@ -1,0 +1,58 @@
+﻿@model List<Customer>
+@{
+    Layout = "_Admin";
+}
+<h1 class="text">Quatity: @Model.Count</h1>
+<h1 class="text text-center">List of account</h1>
+<br />
+
+<table class="table text-center table-striped table-hover">
+    <thead class="table-dark"
+            <tr>
+                <th> Id</th>
+                <th> Customer ID</th>
+                <th> Name</th>
+                <th> Email</th>
+                <th> Address</th>
+                <th> Image</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+    <tbody>
+        @foreach (var cus in Model)
+        {
+            <tr>
+                <td>@cus.Id</td>
+                <td>@cus.CId</td>
+                <td>@cus.CName</td>
+                <td>@cus.CEmail</td>
+                <td>@cus.CAddress</td>
+                <td>
+                    <a asp-controller="" asp-action="" asp-route-id="">
+                        <img src="@cus.CAvatar" width="200" height="300" />
+                    </a>
+                </td>
+                <td>
+
+                    <a class="btn btn-warning" asp-controller="Admin" asp-action="EditCustomer" asp-route-id="@cus.Id">
+                        Edit
+                    </a>
+                 </td>
+                 <td>
+                    <a class="btn btn-success" asp-controller="Admin" asp-action="DetailCustomer" asp-route-id="@cus.Id">
+                        Detail
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteCustomer" asp-route-id="@cus.Id"
+                   onclick="return confirm('Are you sure to delete this account?');">
+                        Delete
+                    </a>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

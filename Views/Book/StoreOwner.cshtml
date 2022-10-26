@@ -1,0 +1,58 @@
+﻿@model List<Book>
+@{
+    Layout = "_Admin";
+}
+
+<div class="container">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <h2>Book <b>Management</b></h2>
+                    </div>
+                    <div class="col-xs-7">
+                        <a class="btn btn-primary" asp-controller="Book" asp-action="Add"><i class="fa-solid fa-plus"></i> <span>Add</span></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">&nbsp;</th>
+                        <th scope="col">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var book in Model)
+                    {
+                        <tr>
+                            <td>@book.BookId</td>
+                            <td>
+                                <a asp-controller="Book" asp-action="" asp-route-id="@book.Id">
+                                    <img src="@book.BookImage" width="150">
+                                </a>
+                            </td>
+                            <td>@book.BookTitle</td>
+                            <td>@book.BookQuantity</td>
+                            <td>@book.BookPrice</td>
+                            <td>@book.Category.CatName</td>
+                            <td>
+                                <a type="button" class="" asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id"><i class="fa-solid fa-wrench" style="color:darkgray"></i></a>
+                            </td>
+                            <td>
+                                <a type="button" class="" asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id"><i class="fa-solid fa-trash" style="color:red"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

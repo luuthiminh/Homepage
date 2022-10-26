@@ -9,7 +9,7 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/site.css">
     <script src="https://kit.fontawesome.com/1e27f03b11.js" crossorigin="anonymous"></script>
-    @*    <link rel="icon" href="images/mixifavicion.png" type="" sizes="30x30">*@
+
     <title>Book Store</title>
 </head>
 <style>
@@ -17,12 +17,13 @@
         position: relative;
         width: 100%;
         z-index: 10;
-        background: #eca0b5;
+        background: #eca0b5; 
     }
 
-    .icon{
+    .icon {
         margin: 70px 100px 10px 10px;
     }
+
     .header_search {
         margin-top: 40px;
     }
@@ -37,7 +38,7 @@
 
     .logo {
         margin-top: 65px;
-  /*      text-align: center;*/
+        /*      text-align: center;*/
     }
 
     div {
@@ -111,7 +112,6 @@
     }
 </style>
 <header>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
     <div class="super_container">
         <!-- Header -->
         <header class="header">
@@ -136,11 +136,18 @@
                         <div class="top_bar_content ml-auto">
                             <div class="top_bar_user">
                                 <div class="user_icon">
+                                    <i class="fa-solid fa-question"></i>
+                                </div>
+                                <div><a asp-controller="Book" asp-action="Help">Help</a></div>
+                            </div>
+                            <div class="top_bar_user">
+                                <div class="user_icon">
                                     <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918647/user.svg"
                                          alt="">
                                 </div>
                                 <div><a asp-controller="" asp-action="">Login</a></div>
                             </div>
+                            
                             <div class="top_bar_user">
                                 <div class="user_icon">
                                     <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918647/user.svg"
@@ -196,7 +203,7 @@
                         </div>
                     </div>
                 </div>
-                 <div class="icon">
+                <div class="icon">
                     <div class="col-md-4 col-md-push-4">
                         <a class="" asp-controller="Order" asp-action="List">
                             <i class="fa-solid fa-cart-shopping" style="font-size: 26px"></i>
@@ -218,7 +225,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <nav class="main_nav">
                 <div class="container">
                     <div class="row">
@@ -255,15 +262,12 @@
                                                     </div>
                                                 </li>
 
-                                                <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                                                    <a class="nav-link" asp-controller="" asp-action="">All Products</a>
-                                                </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" asp-controller="" asp-action="">Contact Us</a>
+                                                    <a class="nav-link" asp-controller="Book" asp-action="ContactUs">Contact Us</a>
                                                 </li>
 
                                                 <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
-                                                    <a class="nav-link" asp-controller="" asp-action="">Feedback</a>
+                                                    <a class="nav-link" asp-controller="Book" asp-action="Feedback">Feedback</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -277,45 +281,16 @@
                 </div>
             </nav>
         </div>
-        @*    <section id="wrapper" style>
-        <div class="container">
-        <div id="columns_inner">
-        <div id="left-column" class="col-xs-12 col-sm-4 col-md03 hb-animate-element top-to-bottom">
-        <div id="tm_vertical_menu_top" class="tmvm-contener clearfix col-lg-12 hb-animate-element top-to-bottom">
-        <div class="block-title">
-        <i class="material-icons menu-open"></i>
-        <div class="menu-title">Categories</div>
-        </div>
-        <div class="menu vertical-menu js-top-menu position-static hidden-sm-down" id="_desktop_top_menu">
-        <ul class="tm_sf-menu top-menu" id="top-menu" data-depth="0" style>
-        <li class="category main_nav menu-1" id="tmcategory-3">
-        <a href="" class="dropdown-item" data-depth="0">Romantic</a>
-        </li>
-        <li class="category main_nav menu-2" id="tmcategory-3">
-        <a href="" class="dropdown-item" data-depth="0">Fiction</a>
-        </li>
-        <li class="category main_nav menu-3" id="tmcategory-3">
-        <a href="" class="dropdown-item" data-depth="0">Kids</a>
-        </li>
-        <li class="category main_nav menu-4" id="tmcategory-3">
-        <a href="" class="dropdown-item" data-depth="0">Technology</a>
-        </li>
-        </ul>
-        </div>
-        </div>
-        </div>
-
-        </section>*@
-        <br>
 </header>
-
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
-
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+</body>
 <footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -339,7 +314,7 @@
                     <li>Romantic</li>
                     <li>Finction</li>
                     <li>Kid</li>
-                    <li>Technology</li>
+                    <li>Tecnology</li>
                 </ul>
             </div>
             <div class="information">
@@ -354,6 +329,7 @@
             <div class="support">
                 <h3>Support</h3>
                 <p>For any questions and suggestions <br> Please contact +84 126 874 829</p>
+
             </div>
         </div>
     </div>

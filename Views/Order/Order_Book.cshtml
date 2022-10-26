@@ -39,9 +39,6 @@ else
                 <th>Price</th>
                 <th>Image</th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -53,7 +50,7 @@ else
                     <td>@or.Quantity</td>
                     <td>@or.Date.ToShortDateString()</td>
                     <td>@or.Price</td>
-                    <td>
+                  @*  <td>
                         <a class="btn btn-outline-success" asp-controller="Order" asp-action="Add" asp-route-id="@or.Id">
                             Add
                         </a>
@@ -68,7 +65,7 @@ else
                    onclick="return confirm('Are you sure to delete this student?');">
                             Delete
                         </a>
-                    </td>
+                    </td>*@
                 </tr>
             }
         </tbody>

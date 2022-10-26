@@ -15,5 +15,9 @@ namespace Homepage.Data
         }
         public DbSet<Book>Books { get; set; }
         public DbSet<Order> Orders { get; set;}
+        public DbSet<Category> Categories { get; set;}
+        public DbSet<StoreOwner> StoreOwners { get; set; }
+        public DbSet<Request> Requests { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 }

@@ -1,0 +1,116 @@
+﻿@model Homepage.Models.Customer
+@{
+    Layout = "_Admin";
+}
+<form method="post" asp-controller="Admin" asp-action="EditCustomer">
+    <h2 class="cangiua gachchan text-center">Edit Customer Account</h2>
+    <div class="form-group">
+        <label class="h4 text-success" asp-for="@Model.Id"></label>
+        <input class="form-control" asp-for="@Model.Id" disabled />
+        <span class="text-danger" asp-validation-for="@Model.Id"></span>
+    </div>
+    <div class="form-group">
+        <label class="h4 text-success" asp-for="@Model.CId">Customer's ID</label>
+        <input class="form-control" asp-for="@Model.CId" />
+        <span class="text-danger" asp-validation-for="@Model.CId"></span>
+    </div>
+    <div class="form-group">
+        <label class="h4 text-success">Full Name</label>
+        <input class="form-control" asp-for="@Model.CName" />
+        <span class="text-danger" asp-validation-for="@Model.CName"></span>
+    </div>
+    <div class="form-group">
+        <label class="h4 text-success" asp-for="@Model.CEmail">Customer's Email</label>
+        <input class="form-control" asp-for="@Model.CEmail" />
+        <span class="text-danger" asp-validation-for="@Model.CEmail"></span>
+    </div>
+    <div class="form-group">
+        <label class="h4 text-success" asp-for="@Model.CPhone">Customer's Phone</label>
+        <input class="form-control" asp-for="@Model.CPhone" />
+        <span class="text-danger" asp-validation-for="@Model.CPhone"></span>
+    </div>
+    <div class="form-group">
+        <label class="h4 text-success" asp-for="@Model.CBirthday">Date of Birth</label>
+        <input class="form-control" asp-for="@Model.CBirthday" />
+        <span class="text-danger" asp-validation-for="@Model.CBirthday"></span>
+    </div>
+    <div class="form-group">
+        <label class="h4 text-success" asp-for="@Model.CAddress">Customer's Address</label>
+        <input class="form-control" asp-for="@Model.CAddress" />
+        <span class="text-danger" asp-validation-for="@Model.CAddress"></span>
+    </div>
+    <div class="form-group">
+        <label class="h4 text-success" asp-for="@Model.CUsername">Username </label><br>
+        <input class="form-control mt-3" asp-for="@Model.CUsername" />
+        <span class="text-danger" asp-validation-for="@Model.CUsername"></span>
+    </div>
+    <div class="form-group">
+        <label class="h4 text-success" asp-for="@Model.CPassword">Password</label><br>
+        <input class="form-control mt-3" asp-for="@Model.CPassword" />
+        <span class="text-danger" asp-validation-for="@Model.CPassword"></span>
+    </div>
+    <div class="form-group">
+        <label class="h4 text-success" asp-for="@Model.CGender">Customer's Gender</label><br />
+        @if (Model.CGender == 'M')
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="CGender" value='M' checked>
+                <label class="form-check-label"> Male </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="CGender" value='F'>
+                <label class="form-check-label"> Female</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="CGender" value='O'>
+                <label class="form-check-label"> Other </label>
+            </div>
+        }
+        else if (Model.CGender == 'F')
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="CGender" value='M'>
+                <label class="form-check-label"> Male </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="CGender" value='F' checked>
+                <label class="form-check-label"> Female </label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="CGender" value='O'>
+                <label class="form-check-label"> Other </label>
+            </div>
+        }
+        else
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="CGender" value='M'>
+                <label class="form-check-label"> Male</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="CGender" value='F'>
+                <label class="form-check-label"> Female</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="CGender" value='O' checked>
+                <label class="form-check-label">Other </label>
+            </div>
+        }
+        <span class="text-danger" asp-validation-for="@Model.CGender"></span>
+    </div>
+    <div class="form-group">
+        <label class="h4 text-success" asp-for="@Model.CAvatar">Customer's Avatar</label><br>
+        <img src="@Model.CAvatar" width="80" height="80" /><br />
+        <input class="form-control mt-3" asp-for="@Model.CAvatar" />
+        <span class="text-danger" asp-validation-for="@Model.CAvatar"></span>
+    </div>
+
+    <div class="form-group">
+        <a class="btn btn-success" asp-controller="Admin" asp-action="Customer">
+            Back
+        </a>
+        <input type="submit" class="btn btn-warning" value="Edit" />
+    </div>
+</form>

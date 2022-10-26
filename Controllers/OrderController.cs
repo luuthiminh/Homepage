@@ -26,11 +26,11 @@ namespace Homepage.Controllers
             var books = context.Books.Find(id);
             order.Book = books;
             order.BookId = id;
-            order.Price = books.Price * quantity;
+            order.Price = books.BookPrice * quantity;
             order.Date = System.DateTime.Now;
             order.Customer = "Minh";
             order.Quantity = quantity;
-            books.Quantity -= quantity;
+            books.BookQuantity -= quantity;
             context.Orders.Add(order);
             context.SaveChanges();
         
@@ -40,5 +40,6 @@ namespace Homepage.Controllers
         {
             return View(context.Orders.ToList());
         }
+
     }
 }

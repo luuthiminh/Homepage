@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Homepage.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221025171947_Order")]
-    partial class Order
+    [Migration("20221026191514_Book")]
+    partial class Book
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,40 +28,68 @@ namespace Homepage.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BId")
-                        .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(3000)
-                        .HasColumnType("nvarchar(3000)");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
+                    b.Property<string>("BookAuthor")
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<string>("BookDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BookId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BookImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("BookPrice")
+                        .HasColumnType("float");
+
+                    b.Property<int>("BookQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BookTitle")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RequestId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("RequestId");
+
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("Homepage.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CatDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CatId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CatName")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Homepage.Models.Order", b =>
@@ -94,6 +122,70 @@ namespace Homepage.Migrations
                     b.HasIndex("BookId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Homepage.Models.Request", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CatDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CatId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CatName")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Requests");
+                });
+
+            modelBuilder.Entity("Homepage.Models.StoreOwner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("SAvatar")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SGender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
+
+                    b.Property<string>("SId")
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
+
+                    b.Property<string>("SName")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("SPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SPhone")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("SUsername")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StoreOwner");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -296,6 +388,21 @@ namespace Homepage.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Homepage.Models.Book", b =>
+                {
+                    b.HasOne("Homepage.Models.Category", "Category")
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Homepage.Models.Request", null)
+                        .WithMany("Books")
+                        .HasForeignKey("RequestId");
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("Homepage.Models.Order", b =>
                 {
                     b.HasOne("Homepage.Models.Book", "Book")
@@ -361,6 +468,16 @@ namespace Homepage.Migrations
             modelBuilder.Entity("Homepage.Models.Book", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Homepage.Models.Category", b =>
+                {
+                    b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("Homepage.Models.Request", b =>
+                {
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

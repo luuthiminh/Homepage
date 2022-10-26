@@ -1,4 +1,5 @@
 ﻿using Homepage.Data;
+using Homepage.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -20,14 +21,11 @@ namespace Homepage.Controllers
             var book = context.Books.Find(id);
             return View(book);
         }
-        public IActionResult Homepage()
-        {
-            return View(context.Books.ToList());
-        }
+  
         [HttpPost]
         public IActionResult Search(string keyword)
         {
-            var books = context.Books.Where(p => p.Title.Contains(keyword)).ToList();
+            var books = context.Books.Where(p => p.BookTitle.Contains(keyword)).ToList();
             if (books.Count == 0)
             {
                 TempData["Message"] = "No product found !";
@@ -36,12 +34,81 @@ namespace Homepage.Controllers
         }
         public IActionResult SorPriceAsc()
         {
-            return View("Index", context.Books.OrderBy(s => s.Price).ToList());
+            return View("Index", context.Books.OrderBy(s => s.BookPrice).ToList());
         }
 
         public IActionResult SortPriceDesc()
         {
-            return View("Index", context.Books.OrderByDescending(s => s.Price).ToList());
+            return View("Index", context.Books.OrderByDescending(s => s.BookPrice).ToList());
+        }
+        public IActionResult StoreOwner()
+        {
+            var categories = context.Categories.ToList();
+            return View(context.Books.ToList());
+        }
+        public IActionResult Delete(int? id)
+        {
+            var book = context.Books.Find(id);
+            context.Books.Remove(book);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Add()
+        {
+            var categories = context.Categories.ToList();
+            ViewBag.Categories = categories;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Add(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Books.Add(book);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Categories = context.Categories.ToList();
+                return View(book);
+            }
+
+        }
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var categories = context.Categories.ToList();
+            ViewBag.Categories = categories;
+            return View(context.Books.Find(id));
+        }
+        [HttpPost]
+        public IActionResult Edit(Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Books.Update(book);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Categories = context.Categories.ToList();
+                return View(book);
+            }
+        }
+        public IActionResult Feedback()
+        {
+            return View();
+        }
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
+        public IActionResult Help()
+        {
+            return View();
         }
     }
 }

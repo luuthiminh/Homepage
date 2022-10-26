@@ -1,0 +1,76 @@
+﻿@model List<Order>
+
+<style>
+    h1 {
+        text-align: center;
+        color: dimgray;
+        font-family: Him Handwriting Font;
+    }
+
+    thead {
+        font-family: Verdana;
+        font-size: 14px;
+    }
+</style>
+
+@if (TempData["Message"] != null)
+{
+    <h5 class="alert alert-info">@TempData["Message"]</h5>
+}
+
+@if (TempData["null"] != null)
+{
+    <h2 class="alert alert-danger">No book in store. Order book again!!</h2>
+    <a class="btn btn-success" asp-controller="Order" asp-action="Order_Book">
+        Order
+    </a>
+}
+else
+{
+    <h1>List Order Book</h1>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Book Id</th>
+                <th>Customer Name</th>
+                <th>Quantity</th>
+                <th>Date Order</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var or in Model)
+            {
+                <tr>
+                    <td>@or.BookId</td>
+                    <td>@or.Customer</td>
+                    <td>@or.Quantity</td>
+                    <td>@or.Date.ToShortDateString()</td>
+                    <td>@or.Price</td>
+                    <td>
+                        <a class="btn btn-outline-success" asp-controller="Order" asp-action="Add" asp-route-id="@or.Id">
+                            Add
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-info" asp-controller="Order" asp-action="Edit" asp-route-id="@or.Id">
+                            Edit
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-danger" asp-controller="Order" asp-action="Delete" asp-route-id="@or.Id"
+                   onclick="return confirm('Are you sure to delete this student?');">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

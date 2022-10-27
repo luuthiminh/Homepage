@@ -1,7 +1,9 @@
 ﻿using Homepage.Data;
 using Homepage.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Net.WebSockets;
 
 namespace Homepage.Controllers
 {
@@ -18,7 +20,10 @@ namespace Homepage.Controllers
         }
         public IActionResult Detail(int id)
         {
-            var book = context.Books.Find(id);
+          /*  var book = context.Books.Find(id);*/
+            var book = context.Books
+                                 .Include(s => s.Category)
+                                 .FirstOrDefault(s => s.Id == id);
             return View(book);
         }
   

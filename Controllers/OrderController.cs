@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.WebSockets;
 
 namespace Homepage.Controllers
 {
@@ -24,6 +25,7 @@ namespace Homepage.Controllers
         {
             Order order = new Order();
             var books = context.Books.Find(id);
+            
             order.Book = books;
             order.BookId = id;
             order.Price = books.BookPrice * quantity;

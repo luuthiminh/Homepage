@@ -1,5 +1,61 @@
 ﻿@model List<Book>
+<nav class="main_nav">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="main_nav_content d-flex flex-row">
+                    <div class="main_nav_content d-flex flex-row">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav text-center mr-auto">
+                                    <li class="nav-item active mr-lg-2 mb-lg-0 mb-2">
+                                        <a class="nav-link" asp-controller="Book" asp-action="Index">
+                                            Homepage
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown mr-lg-2 mb-lg-0 mb-2">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                           aria-haspopup="true" aria-expanded="false">
+                                            Categories
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <div class="agile_inner_drop_nav_info p-4">
+                                                <div class="row">
+                                                    <div class="col-sm-6 multi-gd-img">
+                                                        <ul class="multi-column-dropdown">
+                                                            @foreach (var c in Model)
+                                                            {
+                                                                <li class="hassubs"> 
+                                                                    <a href="#" @c.Category.CatName>
+                                                                        <i class="fas fa-chevron-down"></i>
+                                                                    </a>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
 
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="Book" asp-action="ContactUs">Contact Us</a>
+                                    </li>
+
+                                    <li class="nav-item mr-lg-2 mb-lg-0 mb-2">
+                                        <a class="nav-link" asp-controller="Book" asp-action="Feedback">Feedback</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- //navigation -->
+            </div>
+        </div>
+    </div>
+</nav>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>

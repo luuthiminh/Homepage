@@ -16,6 +16,7 @@ namespace Homepage.Controllers
         }
         public IActionResult Index()
         {
+            var categories = context.Categories.ToList();
             return View(context.Books.ToList());
         }
         public IActionResult Detail(int id)
